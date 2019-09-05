@@ -1,6 +1,6 @@
 ﻿namespace PF.FileIO.UI
 {
-    partial class Form1
+    partial class frmFileIO
     {
         /// <summary>
         /// Required designer variable.
@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtMain = new System.Windows.Forms.TextBox();
+            this.txtInfo = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuSaveAs = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // txtMain
+            // txtInfo
             // 
-            this.txtMain.Location = new System.Drawing.Point(12, 27);
-            this.txtMain.Multiline = true;
-            this.txtMain.Name = "txtMain";
-            this.txtMain.Size = new System.Drawing.Size(356, 459);
-            this.txtMain.TabIndex = 0;
+            this.txtInfo.Location = new System.Drawing.Point(12, 27);
+            this.txtInfo.Multiline = true;
+            this.txtInfo.Name = "txtInfo";
+            this.txtInfo.Size = new System.Drawing.Size(356, 459);
+            this.txtInfo.TabIndex = 0;
             // 
             // statusStrip1
             // 
@@ -71,7 +71,7 @@
             this.newToolStripMenuItem,
             this.openToolStripMenuItem,
             this.saveToolStripMenuItem,
-            this.saveAsToolStripMenuItem});
+            this.menuSaveAs});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -94,22 +94,23 @@
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Save";
             // 
-            // saveAsToolStripMenuItem
+            // menuSaveAs
             // 
-            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.saveAsToolStripMenuItem.Text = "Save As";
+            this.menuSaveAs.Name = "menuSaveAs";
+            this.menuSaveAs.Size = new System.Drawing.Size(180, 22);
+            this.menuSaveAs.Text = "&Save As";
+            this.menuSaveAs.Click += new System.EventHandler(this.menuSaveAs_Click);
             // 
-            // Form1
+            // frmFileIO
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(380, 526);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip);
-            this.Controls.Add(this.txtMain);
+            this.Controls.Add(this.txtInfo);
             this.MainMenuStrip = this.menuStrip;
-            this.Name = "Form1";
+            this.Name = "frmFileIO";
             this.Text = "File I/O";
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
@@ -120,14 +121,14 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtMain;
+        private System.Windows.Forms.TextBox txtInfo;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuSaveAs;
     }
 }
 
