@@ -20,39 +20,78 @@ namespace PF.FileIO.UI
 
         private void menuSaveAs_Click(object sender, EventArgs e)
         {
+            
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Text File|*.txt";
+            saveFileDialog.InitialDirectory = @"c:\Users\public";
+            saveFileDialog.Title = "Save an Text File";
+            saveFileDialog.ShowDialog();
+            StreamWriter streamWriter;
 
-            // Displays a SaveFileDialog so the user can save the text
-
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "Text File|*.txt";
-            saveFileDialog1.Title = "Save an Text File";
-            saveFileDialog1.ShowDialog();
-
-            // If the file name is not an empty string open it for saving.
-            if (saveFileDialog1.FileName != "")
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                // Saves via a FileStream created by the OpenFile method.
-                FileStream fs = (FileStream)saveFileDialog1.OpenFile();
-                // NOTE that the FilterIndex property is one-based.
-                (saveFileDialog1.FilterIndex)
+                streamWriter = File.CreateText(saveFileDialog.FileName);
+                streamWriter.WriteLine(txtInfo.Text);
+
+                streamWriter.Close();
+                streamWriter = null;
+            }
+
+        }
+        private void menuSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Text File|*.txt";
+                saveFileDialog.InitialDirectory = @"c:\Users\public";
+                saveFileDialog.Title = "Save an Text File";
+                saveFileDialog.ShowDialog();
+                StreamWriter streamWriter;
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    this.menuSaveAs.Text.Save(fs,
+                    streamWriter = File.CreateText(saveFileDialog.FileName);
+                    streamWriter.WriteLine(txtInfo.Text);
 
-         );
-                    fs.Close();
-
-
-                    StreamReader streamReader;
-                    while (!streamReader.EndOfStream)
-                    {
-
-                    }
-
+                    streamWriter.Close();
+                    streamWriter = null;
                 }
 
 
             }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
+
+        private void menuNew_Click(object sender, EventArgs e)
+        {
+            if (txtInfo.Text != string.Empty)
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Text File|*.txt";
+                saveFileDialog.InitialDirectory = @"c:\Users\public";
+                saveFileDialog.Title = "Save an Text File";
+                saveFileDialog.ShowDialog();
+                StreamWriter streamWriter;
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    streamWriter = File.CreateText(saveFileDialog.FileName);
+                    streamWriter.WriteLine(txtInfo.Text);
+
+                    streamWriter.Close();
+                    streamWriter = null;
+                }
+
+            }
+
+            txtInfo.Text = "";
+        }
+
         private void menuOpen_Click(object sender, EventArgs e)
         {
             try
@@ -83,6 +122,8 @@ namespace PF.FileIO.UI
             lblStatus.Text = exception.Message;
             lblStatus.ForeColor = Color.Red;
         }
+
+      
     }
 }
             
