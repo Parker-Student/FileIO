@@ -20,28 +20,70 @@ namespace PF.FileIO.UI
 
         private void menuSaveAs_Click(object sender, EventArgs e)
         {
+
+            // Displays a SaveFileDialog so the user can save the text
+
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "Text File|*.txt";
+            saveFileDialog1.Title = "Save an Text File";
+            saveFileDialog1.ShowDialog();
+
+            // If the file name is not an empty string open it for saving.
+            if (saveFileDialog1.FileName != "")
+            {
+                // Saves via a FileStream created by the OpenFile method.
+                FileStream fs = (FileStream)saveFileDialog1.OpenFile();
+                // NOTE that the FilterIndex property is one-based.
+                (saveFileDialog1.FilterIndex)
+                {
+                    this.menuSaveAs.Text.Save(fs,
+
+         );
+                    fs.Close();
+
+
+                    StreamReader streamReader;
+                    while (!streamReader.EndOfStream)
+                    {
+
+                    }
+
+                }
+
+
+            }
+        }
+        private void menuOpen_Click(object sender, EventArgs e)
+        {
             try
             {
-                // Create a new stream writer variable
-                StreamWriter streamWriter;
-                // Associate the streamwriter with a file.
-                streamWriter = File.AppendText("c:\\Users\\Public\\MyFile.txt");
-                //write the data to the file.
-                streamWriter.WriteLine(txtInfo.Text);
-                //Close and cleanup
-                streamWriter.Close();
-                streamWriter = null;
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                StreamReader streamReader;
+                lblStatus.Text = string.Empty;
+
+                openFileDialog.Title = " Please pick a file to open.";
+                openFileDialog.InitialDirectory = @"c:\\Users\public";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    streamReader = File.OpenText(openFileDialog.FileName);
+                    txtInfo.Text = streamReader.ReadToEnd();
+                    streamReader.Close();
+                    streamReader = null;
+                }
             }
             catch (Exception ex)
             {
-
-                throw;
+                ShowError(ex);
             }
         }
-        private void ShowError (Exception exception)
+
+        private void ShowError(Exception exception)
         {
             lblStatus.Text = exception.Message;
             lblStatus.ForeColor = Color.Red;
         }
     }
 }
+            
+  
