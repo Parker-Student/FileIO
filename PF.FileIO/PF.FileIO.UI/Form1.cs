@@ -24,10 +24,12 @@ namespace PF.FileIO.UI
             public static int counter = 0;
         }
 
-
+      
         private void timer1_Tick(object sender, EventArgs e)
         {
+            
             lblTime.Text = DateTime.Now.ToString();
+           
         }
 
         private void menuSaveAs_Click(object sender, EventArgs e)
@@ -165,7 +167,7 @@ namespace PF.FileIO.UI
             lblStatus.ForeColor = Color.Red;
         }
 
-
+        
       
 
     }

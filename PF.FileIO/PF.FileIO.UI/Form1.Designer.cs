@@ -126,7 +126,6 @@
             // 
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(0, 17);
-            this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // frmFileIO
             // 
