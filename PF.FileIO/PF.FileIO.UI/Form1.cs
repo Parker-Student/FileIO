@@ -18,6 +18,18 @@ namespace PF.FileIO.UI
             InitializeComponent();
         }
 
+        static class Globals
+        {
+            public static string filename0;
+            public static int counter = 0;
+        }
+
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            lblTime.Text = DateTime.Now.ToString();
+        }
+
         private void menuSaveAs_Click(object sender, EventArgs e)
         {
             
@@ -25,7 +37,6 @@ namespace PF.FileIO.UI
             saveFileDialog.Filter = "Text File|*.txt";
             saveFileDialog.InitialDirectory = @"c:\Users\public";
             saveFileDialog.Title = "Save an Text File";
-            saveFileDialog.ShowDialog();
             StreamWriter streamWriter;
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -35,18 +46,26 @@ namespace PF.FileIO.UI
 
                 streamWriter.Close();
                 streamWriter = null;
+
+                lblStatus.Text = "File Saved...";
+                lblStatus.ForeColor = Color.Blue;
+
+                Globals.filename0 = saveFileDialog.FileName;
+                Globals.counter++;
+                
             }
 
         }
         private void menuSave_Click(object sender, EventArgs e)
         {
+            if (Globals.counter == 0) { 
             try
             {
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.Filter = "Text File|*.txt";
                 saveFileDialog.InitialDirectory = @"c:\Users\public";
                 saveFileDialog.Title = "Save an Text File";
-                saveFileDialog.ShowDialog();
+              
                 StreamWriter streamWriter;
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -56,7 +75,14 @@ namespace PF.FileIO.UI
 
                     streamWriter.Close();
                     streamWriter = null;
-                }
+
+
+                        lblStatus.Text = "File Saved...";
+                        lblStatus.ForeColor = Color.Blue;
+
+                        Globals.filename0 = saveFileDialog.FileName;
+                        Globals.counter++;
+                    }
 
 
             }
@@ -64,6 +90,19 @@ namespace PF.FileIO.UI
             {
 
                 throw;
+            }
+            }
+            else
+            {
+                
+                StreamWriter streamWriter;
+                streamWriter = File.AppendText(Globals.filename0);
+                streamWriter.WriteLine(txtInfo.Text);
+                streamWriter.Close();
+                streamWriter = null;
+
+                lblStatus.Text = "File Saved...";
+                lblStatus.ForeColor = Color.Blue;
             }
         }
 
@@ -75,7 +114,7 @@ namespace PF.FileIO.UI
                 saveFileDialog.Filter = "Text File|*.txt";
                 saveFileDialog.InitialDirectory = @"c:\Users\public";
                 saveFileDialog.Title = "Save an Text File";
-                saveFileDialog.ShowDialog();
+        
                 StreamWriter streamWriter;
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -89,7 +128,7 @@ namespace PF.FileIO.UI
 
             }
 
-            txtInfo.Text = "";
+            txtInfo.Clear();
         }
 
         private void menuOpen_Click(object sender, EventArgs e)
@@ -109,6 +148,9 @@ namespace PF.FileIO.UI
                     txtInfo.Text = streamReader.ReadToEnd();
                     streamReader.Close();
                     streamReader = null;
+
+                    lblStatus.Text = "Opened: " + openFileDialog.FileName;
+                    lblStatus.ForeColor = Color.Blue;
                 }
             }
             catch (Exception ex)
@@ -123,7 +165,9 @@ namespace PF.FileIO.UI
             lblStatus.ForeColor = Color.Red;
         }
 
+
       
+
     }
 }
             
