@@ -18,6 +18,7 @@ namespace PF.FileIO.UI
             InitializeComponent();
         }
 
+        
         static class Globals
         {
             public static string filename0;
@@ -28,7 +29,7 @@ namespace PF.FileIO.UI
         private void timer1_Tick(object sender, EventArgs e)
         {
             
-            lblTime.Text = DateTime.Now.ToString();
+            lblTime.Text = DateTime.Now.ToShortTimeString();
            
         }
 
@@ -137,6 +138,7 @@ namespace PF.FileIO.UI
         {
             try
             {
+                Globals.counter++;
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 StreamReader streamReader;
                 lblStatus.Text = string.Empty;
@@ -153,6 +155,7 @@ namespace PF.FileIO.UI
 
                     lblStatus.Text = "Opened: " + openFileDialog.FileName;
                     lblStatus.ForeColor = Color.Blue;
+                    Globals.filename0 = openFileDialog.FileName;
                 }
             }
             catch (Exception ex)
